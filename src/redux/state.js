@@ -60,4 +60,17 @@ let store = {
     }
 };
 
+export const addPostsActionCreator = () => {
+    return {
+        type: "ADD-POSTS"
+    }
+;}
+
+export const onPostChangeActionCreator = (text) => {
+    return {
+        type: "ADD-POSTS-CHANGE",
+        newText: text
+    }
+}
+
 export default store;
