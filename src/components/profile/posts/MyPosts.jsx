@@ -8,12 +8,12 @@ const MyPosts = (props) => {
     let postsElement = props.state.posts.postsData.map(p => <Post message={p.message}/>)
 
     let newPost = () => {
-        props.addPosts()
+        props.dispatch({type: 'ADD-POSTS'})
     };
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.addPostsChange(text)
+        props.dispatch({type: "ADD-POSTS-CHANGE", newText: text})
     };
 
     return (
