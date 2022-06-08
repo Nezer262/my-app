@@ -1,3 +1,12 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./profile-reducer";
+
+const ADD_MESSAGE = "ADD-MESSAGE"
+const ADD_MESSAGE_CHANGE = "ADD-MESSAGE-CHANGE"
+const ADD_POSTS = "ADD-POSTS"
+const ADD_POSTS_CHANGE = "ADD-POSTS-CHANGE"
+
+
 let store = {
     _state: {
         dialogs: {
@@ -12,14 +21,15 @@ let store = {
                 {id: 1, message: "Hello"},
                 {id: 2, message: "How are you?"},
                 {id: 3, message: "I'm good"}
-            ]
+            ],
+            newMessageText: ""
         },
         posts: {
             postsData: [
                 {id: 1, message: "Hello"},
                 {id: 2, message: "How are you?"},
                 {id: 3, message: "Good"}
-              ],
+            ],
             newPostText: ""
         },
         friends: {
@@ -41,7 +51,14 @@ let store = {
     },
 
     dispatch(action){
-        if(action.type === "ADD-POSTS") {
+
+        this._state.posts = profileReducer(this._state.posts, action)
+        this._state.dialogs = dialogsReducer(this._state.dialogs, action)
+        debugger
+
+        this._rerenderEntireTree(this._state)
+
+        /* if(action.type === "ADD-POSTS") {
             let newPost = { 
                 id: 4, 
                 message: this._state.posts.newPostText
@@ -51,25 +68,54 @@ let store = {
             this._state.posts.newPostText = ""
         
             this._rerenderEntireTree(this._state)
-        }
+        } 
         else if(action.type === "ADD-POSTS-CHANGE"){
             this._state.posts.newPostText = action.newText
     
             this._rerenderEntireTree(this._state)
         }
+        else if(action.type === "ADD-MESSAGE") {
+            let newMessage = {
+                id: 5,
+                message: this._state.dialogs.newMessageText
+            }
+
+            this._state.dialogs.messagesData.push(newMessage)
+            this._state.dialogs.newMessageText = ""
+
+            this._rerenderEntireTree(this._state)
+        } 
+        else if(action.type === "ADD-MESSAGE-CHANGE") {
+            this._state.dialogs.newMessageText = action.newMessage
+
+            this._rerenderEntireTree(this._state)
+        } */
     }
 };
 
 export const addPostsActionCreator = () => {
     return {
-        type: "ADD-POSTS"
+        type: ADD_POSTS
     }
 ;}
 
 export const onPostChangeActionCreator = (text) => {
     return {
-        type: "ADD-POSTS-CHANGE",
+        type: ADD_POSTS_CHANGE,
         newText: text
+    }
+};
+
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const onMessageChangeActionCreator = (text) => {
+    return {
+        type: ADD_MESSAGE_CHANGE,
+        newMessage: text
     }
 }
 
