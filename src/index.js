@@ -4,13 +4,16 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = () => {
     root.render(
         <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </React.StrictMode>
     );
 }
