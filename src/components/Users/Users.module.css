@@ -1,0 +1,8 @@
+.numberPage {
+    font-weight: 700;
+}
+
+.pointer {
+    display: inline-block;
+    cursor: pointer;
+}
