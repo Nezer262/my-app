@@ -31,21 +31,11 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed ? 
-                        <button onClick={ () => {
-                            usersAPI.unfollow(u.id)
-                            .then(data => {
-                                if(data.resultCode === 0) {
-                                    props.unfollow(u.id)
-                                };
-                            });
+                        <button disabled={props.isFollowedProgress.some(id => id === u.id)} onClick={ () => {
+                            props.unfollowThunkCreator(u.id)
                         }}>UnFollow</button> : 
-                        <button onClick={ () => {
-                            usersAPI.follow(u.id)
-                            .then(data => {
-                                if(data.resultCode === 0) {
-                                    props.follow(u.id)
-                                };
-                            });
+                        <button disabled={props.isFollowedProgress.some(id => id === u.id)} onClick={ () => {
+                            props.followThunkCreator(u.id)
                             }}>Follow</button>}
                     </div>
                 </span>

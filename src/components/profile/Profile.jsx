@@ -4,8 +4,8 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
     return (
-        <div>
-            <ProfileInfo profile={props.profile}/>
+        <div> 
+            <ProfileInfo profile={props.profile} isAuth={props.isAuth}/>
             <MyPostsContainer/>
         </div>
     )
