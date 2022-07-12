@@ -1,5 +1,4 @@
 import * as axios from 'axios'
-import { setAuthUser } from '../redux/auth-reducer'
 
 const instance = axios.create ({
     withCredentials: true,
@@ -24,5 +23,14 @@ export const usersAPI = {
     },
     getUserProfile(userId) {
         return instance.get(`profile/${userId}`)
+    }
+}
+
+export const profileAPI = {
+    getStatus(userId) {
+        return instance.get(`profile/status/` + userId);
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status`, { status: status });
     }
 }
