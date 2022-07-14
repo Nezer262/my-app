@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Preloader from '../../common/Preloader';
-import ProfileStatus from '../ProfileStatus/ProfileStatus';
+import ProfileStatusHooks from '../ProfileStatus/ProfileStatusHooks';
 import s from './ProfileInfo.module.css';
 
 const ProfileInfo = (props) => {
@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} />
                 <div>{props.profile.fullName}</div>
-                <ProfileStatus status={props.status} />
+                <ProfileStatusHooks status={props.status} />
             </div>
         </div>
     )
