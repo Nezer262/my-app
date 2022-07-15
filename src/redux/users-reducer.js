@@ -11,7 +11,7 @@ const TOGGLE_IS_FOLLOWED_PROGRESS = "TOGGLE_IS_FOLLOWED_PROGRESS"
 let initialState = {
     users: [],
     pageSize: 5,
-    countSize: 25,
+    countSize: 50,
     currentPage: 1,
     isFetching: true,
     isFollowedProgress: []
@@ -72,7 +72,7 @@ export const getUserPageThunkCreator = (pageSize, countSize) => {
         dispatch(toggleIsFetching(true))
         usersAPI.getUsers(pageSize, countSize).then(data => {
             dispatch(setUsers(data.items))
-            /* this.props.setUsersCount(data.totalCount) */
+            /* dispatch(setUsersCount(data.totalCount)) */
         dispatch(toggleIsFetching(false))
         })
     }
